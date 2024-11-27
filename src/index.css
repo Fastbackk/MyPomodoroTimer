@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap" rel="stylesheet');
+
+body {
+  font-family: "Faculty Glyphic", sans-serif;
+  text-align: center;
+  background: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+.faculty-glyphic-regular {
+  font-family: "Faculty Glyphic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.app {
+  margin-top: 20vh;
+}
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: red;
+  color: transparent;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+

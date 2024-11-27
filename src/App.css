@@ -1,0 +1,95 @@
+.div1 {
+  margin: 0;
+  padding: 0;
+  color: black;
+  text-align: center;
+  height: 100vh;
+  transition: 0.4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Video dışarı taşmasın */
+  position: relative;
+}
+
+.div2 {
+  margin-top: 10%;
+  transition: 0.4s;
+  padding: 20px;
+  height: 60%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  position: relative; /* Video üzerinde içerik */
+  z-index: 1;
+}
+.timeH {
+  margin: 40px;
+  font-size: 10vh;
+}
+
+.div3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.div4 {
+  display: flex;
+  align-items: center;
+}
+
+.startButton {
+  background-color: white;
+  transition: 0.5s;
+  color: #b83b3b;
+  font-size: 5vh;
+}
+
+.startButton:hover {
+  background-color: rgb(255, 218, 218);
+  color: #b83b3b;
+}
+
+h3 {
+  font-size: 2vh;
+}
+.resetButton{
+  background-color: white;
+  color: #b83b3b;
+  padding: 5px;
+  
+}
+.myPomos{
+  font-size: 20px;
+}
+.button5{
+  padding: 5px;
+  background-color:white;
+  color: black;
+  display: flex;
+  flex-direction:  row;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 50px;
+
+  transition: 0.4s;
+}
+.button5:hover{
+  color: white;
+  background-color: black;
+
+}
+.p_wick{
+  margin: 0;
+ 
+  font-size: 20px;
+  text-wrap: nowrap;
+  font-weight: bold;
+  text-align: center;
+}
+.iconWick{
+  height: 4vh;
+}
