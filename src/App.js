@@ -1,10 +1,15 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import { IoIosSkipForward } from "react-icons/io";
+import Navbar from './Navbar';
+import { Nav } from 'react-bootstrap';
+import Task from './components/Task';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   const [isCompleted, SetIsCompleted] = useState(false);
-  const [bgColor, setbgColor] = useState("#000000");
+  const [bgColor, setbgColor] = useState("#ffffff");
   const [bgColor2, setbgColor2] = useState("#ffffff");
   const [buttonTextValue, setButtonTextValue] = useState("Start!");
   const [leftTime, setLeftTime] = useState(25 * 60);
@@ -13,8 +18,6 @@ function App() {
   const [myPomos, setMyPomos] = useState(0);
   const [showVideo, setShowVideo] = useState(false);
   const [hour, setHour] = useState(0);
-
-
 
   //timer fonksiyonu kodları
   useEffect(() => {
@@ -115,26 +118,21 @@ function App() {
     if (myPomos % 4 === 0 && myPomos !== 0) {
       setHour(prevHour => prevHour + 1);
     }
+    
   }, [myPomos]);
   const WickModeButton=()=>{
     setShowVideo(true);
 
   };
   
-
-
   return (
     <div className="div1" style={{ backgroundColor: bgColor }}>
-      {showVideo ? (
-        <video
-          className="background-video"
-          src="images/johnWick.mp4" // Video dosyasının yolu
-          autoPlay
-          muted
-          playsInline
-        />
-      ) : (
-        <div className="div2" style={{ backgroundColor: bgColor2 }}>
+      <Navbar></Navbar>
+      <div className='container'>
+      <div className='MyTrackers'>
+        <Task></Task>
+      </div>
+      <div className="div2" style={{ backgroundColor: bgColor2 }}>
           <p className='myPomos'>#{myPomos}</p>
           <p className='myPomos'>{hour} Saat Çalıştın.</p>
           <h1 className="timeH">{formatTime(leftTime)}</h1>
@@ -165,7 +163,15 @@ function App() {
 
           </div>
         </div>
-      )}
+        <div className='myValues'>
+          <h1>İstatistiklerim</h1>
+        </div>
+      </div>
+      
+      
+        
+       
+     
     </div>
   );
 }
