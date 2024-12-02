@@ -4,7 +4,7 @@ import { IoIosSkipForward } from "react-icons/io";
 import Navbar from './Navbar';
 import { Nav } from 'react-bootstrap';
 import Task from './components/Task';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 function App() {
