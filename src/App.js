@@ -2,22 +2,22 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 import { IoIosSkipForward } from "react-icons/io";
 import Navbar from './Navbar';
-import { Nav } from 'react-bootstrap';
 import Task from './components/Task';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import MyValues from './components/MyValues';
+import { LuTimerReset } from "react-icons/lu";
 
 
 function App() {
   const [isCompleted, SetIsCompleted] = useState(false);
-  const [bgColor, setbgColor] = useState("#ffffff");
-  const [bgColor2, setbgColor2] = useState("#ffffff");
+  const [bgColorGeneral, setbgColorGeneral] = useState("#ff656f");
+  const [bgColorOtherGrids, setbgColorOtherGrids] = useState("#fd8186");
   const [buttonTextValue, setButtonTextValue] = useState("Start!");
   const [leftTime, setLeftTime] = useState(25 * 60);
   const [isRunning, setIsRunning] = useState(false);
   const [isPomo, setIsPomo] = useState(true);
   const [myPomos, setMyPomos] = useState(0);
   const [showVideo, setShowVideo] = useState(false);
-  const [hour, setHour] = useState(0);
 
   //timer fonksiyonu kodları
   useEffect(() => {
@@ -68,16 +68,16 @@ function App() {
       // Pomodoro'dan mola moduna geçiş
       setLeftTime(5 * 60); // 5 dakika olarak ayarla
       setIsPomo(false); // Mola moduna geçiş
-      setbgColor("#39848a");
-      setbgColor2("#4c9097");
+      setbgColorGeneral("#01268f");
+      setbgColorOtherGrids("#01268f");
       setButtonTextValue("Start");
       setIsRunning(false); // Mola modunda durdur, Start butonuna basılınca başlasın
     } else {
       // Mola modundan Pomodoro'ya geçiş
       setLeftTime(25 * 60); // 25 dakika olarak ayarla
       setIsPomo(true); // Pomodoro moduna geçiş
-      setbgColor("#000000");
-      setbgColor2("#c15d5d");
+      setbgColorGeneral("#ff656f");
+      setbgColorOtherGrids("#fd8186");
       setButtonTextValue("Start");
       setIsRunning(false); // Pomodoro'ya geçerken durdur, Start butonuna basılınca başlasın
       setMyPomos(myPomos + 1);
@@ -88,8 +88,8 @@ function App() {
     setIsRunning(false);
     setLeftTime(25 * 60); // Reset yapınca 25 dakikaya dön
     setIsPomo(true); // Pomodoro modu
-    setbgColor("#000000");
-    setbgColor2("#c15d5d");
+    setbgColorGeneral("#ff656f");
+    setbgColorOtherGrids("#fd8186");
     setButtonTextValue("Start");
     setMyPomos(0);
 
@@ -113,65 +113,53 @@ function App() {
     const audio = new Audio('images/tick.mp3');
     audio.play();
   };
-  // `myPomos` her güncellendiğinde 4'e bölündüğünde hour'ı artır
-  useEffect(() => {
-    if (myPomos % 4 === 0 && myPomos !== 0) {
-      setHour(prevHour => prevHour + 1);
-    }
-    
-  }, [myPomos]);
-  const WickModeButton=()=>{
+
+  const WickModeButton = () => {
     setShowVideo(true);
 
   };
-  
+
+
+
+
   return (
-    <div className="div1" style={{ backgroundColor: bgColor }}>
+    <div className="div1 d-flex flex-column">
       <Navbar></Navbar>
-      <div className='container'>
-      <div className='MyTrackers'>
-        <Task></Task>
+      <div>
+        <button className='button5' style={{ float: "right", margin: "20px" }}>
+          <img className='iconWick' src="/images/iconWick.png" alt="Icon Wick" />
+          <p className='p_wick'>Wick Mode (Premium) </p>
+        </button>
       </div>
-      <div className="div2" style={{ backgroundColor: bgColor2 }}>
-          <p className='myPomos'>#{myPomos}</p>
-          <p className='myPomos'>{hour} Saat Çalıştın.</p>
-          <h1 className="timeH">{formatTime(leftTime)}</h1>
-          <div className="div3">
-            <div className="div4">
-              <button onClick={start} className="startButton">
 
-                {isRunning ? "Stop" : "Start"}
-              </button>
+      <div className='justify-content-center d-flex flex-row'>
+        {/* SOL BÖLÜM/*/}
+        <div className='custom_div' style={{ transition: '0.4s', backgroundColor: bgColorOtherGrids }}>
+          <MyValues myPomos={myPomos}></MyValues>
+        </div>
+        {/* POMODORO BÖLÜMÜ/*/}
+        <div className='custom_div general d-flex justify-content-center' style={{ fontFamily: 'Parkinsans, sans-serif', backgroundColor: bgColorGeneral, transition: '0.4s' }}>
+          <p className='myPomos' style={{ fontFamily: 'Pacifico,cursive', fontSize: 'xx-large' }}>#{myPomos}</p>
+          <p style={{ fontOpticalSizing: 'auto', fontWeight: '800', fontStyle: 'normal', fontSize: '13vh' }}>{formatTime(leftTime)}</p>
+          <div className='d-flex justify-content-center align-items-start' style={{ width: '100%', height: '40%' }}>
+            <button className='resetbutton' onClick={resetTime}>
+              <LuTimerReset />
+            </button>
+            <button className="startbutton" onClick={start}>
+              {isRunning ? "Durdur" : "Başlat"}
+            </button>
+            <IoIosSkipForward
+              onClick={skip}
+              className="resetbutton"
 
-
-              <IoIosSkipForward
-                onClick={skip}
-                className="icon1"
-                style={{
-                  fontSize: "50px",
-                  marginLeft: "5%",
-                  visibility: isRunning ? "visible" : "collapse",
-                }}
-              />
-              <button className='resetButton' onClick={resetTime}>Reset</button>
-              <button onClick={WickModeButton} className='button5'>
-                <img className='iconWick' src="/images/iconWick.png" alt="Icon Wick" />
-                <p className='p_wick'>Wick Mode</p>
-              </button>
-            </div>
-
-
+              style={{ marginTop: '3%', visibility: isRunning ? "visible" : "collapse", }} />
           </div>
         </div>
-        <div className='myValues'>
-          <h1>İstatistiklerim</h1>
+        {/* SAĞ BÖLÜM/*/}
+        <div className='custom_div rightBar' style={{ transition: '0.4s', backgroundColor: bgColorOtherGrids }}>
+          <Task></Task>
         </div>
       </div>
-      
-      
-        
-       
-     
     </div>
   );
 }
