@@ -15,7 +15,7 @@ function MyValues({ myPomos }) {
     return (
         <div style={{ fontFamily: 'Parkinsans, sans-serif' }}>
             <p className="text-center fs-4 m-4" style={{ borderBottom: "3px solid white" }}>İstatistiklerim</p>
-            <p className="fs-2 mt-5">ŞURAYA POMODOR LOGOSU EKLE KAÇ TANE OLDUPUNU Çalışma Saati: {zaman}s {dakika}dk</p>
+            <p className="fs-3 mt-5">Çalışma Saati: {zaman}s {dakika}dk</p>
         </div>
     );
 

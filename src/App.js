@@ -6,6 +6,8 @@ import Task from './components/Task';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyValues from './components/MyValues';
 import { LuTimerReset } from "react-icons/lu";
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 
 
 function App() {
@@ -17,7 +19,6 @@ function App() {
   const [isRunning, setIsRunning] = useState(false);
   const [isPomo, setIsPomo] = useState(true);
   const [myPomos, setMyPomos] = useState(0);
-  const [showVideo, setShowVideo] = useState(false);
 
   //timer fonksiyonu kodları
   useEffect(() => {
@@ -55,11 +56,12 @@ function App() {
     if (isCompleted) {
       skip();
       SetIsCompleted(false);
+      playSound_finished();
 
     } else {
       skip();
       SetIsCompleted(true);
-
+      
     }
   }
 
@@ -85,6 +87,8 @@ function App() {
   };
 
   const resetTime = () => {
+    const confirmReset=window.confirm("Zamanlayıcıyı sıfırlamak istediğinize emin misiniz?");
+    if(confirmReset){
     setIsRunning(false);
     setLeftTime(25 * 60); // Reset yapınca 25 dakikaya dön
     setIsPomo(true); // Pomodoro modu
@@ -92,7 +96,7 @@ function App() {
     setbgColorOtherGrids("#fd8186");
     setButtonTextValue("Start");
     setMyPomos(0);
-
+    }
   };
 
   const formatTime = (timeInSeconds) => {
@@ -100,39 +104,20 @@ function App() {
     const seconds = timeInSeconds % 60; // Saniye kısmı
     return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   };
-  useEffect(() => {
-    // 5 saniye sonra videoyu kaldır
-    const timer = setTimeout(() => {
-      setShowVideo(false);
-    }, 5000);
-
-    return () => clearTimeout(timer); // Temizlik
-  }, []);
 
   const playSound = () => {
     const audio = new Audio('images/tick.mp3');
     audio.play();
   };
-
-  const WickModeButton = () => {
-    setShowVideo(true);
-
+  const playSound_finished = () => {
+    const audio = new Audio('images/finishSound.wav');
+    audio.play();
   };
-
-
-
 
   return (
     <div className="div1 d-flex flex-column">
       <Navbar></Navbar>
-      <div>
-        <button className='button5' style={{ float: "right", margin: "20px" }}>
-          <img className='iconWick' src="/images/iconWick.png" alt="Icon Wick" />
-          <p className='p_wick'>Wick Mode (Premium) </p>
-        </button>
-      </div>
-
-      <div className='justify-content-center d-flex flex-row'>
+      <div className='justify-content-center d-flex flex-row mt-4' style={{ flex: 1 }}>
         {/* SOL BÖLÜM/*/}
         <div className='custom_div' style={{ transition: '0.4s', backgroundColor: bgColorOtherGrids }}>
           <MyValues myPomos={myPomos}></MyValues>
@@ -160,6 +145,19 @@ function App() {
           <Task></Task>
         </div>
       </div>
+
+      <footer className="d-flex flex-column bg-primary text-white p-3 bg-dark">
+        <div className="container">
+          <div className="text-center mt-3">
+            <button className='footerIconButton'> <FaGithub onClick={(e)=> window.location.href ="https://github.com/Fastbackk"} className='g_icon fs-1' /></button>
+            <button className='footerIconButton'> <FaLinkedin onClick={(e)=> window.location.href="https://www.linkedin.com/in/mahmut-tunahan-akta%C5%9F-942699267/"} className='l_icon fs-1' /></button>
+          </div>
+        </div>
+        <div className="text-center mt-3">
+          <p>Mahmut Tunahan Aktaş tarafından geliştirildi.</p>
+          <p>&copy; 2024 My Pomodoro Timer. Tüm hakları saklıdır.</p>
+        </div>
+      </footer>
     </div>
   );
 }
