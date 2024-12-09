@@ -19,7 +19,6 @@ body {
   background-image: url('/public/images/wallpaper.jpg');
   background-size: cover;
   background-position: center;
-  height: auto;
 }
 
 .content_whatPomo {
@@ -47,7 +46,6 @@ body {
   flex-direction: column;
   margin-top: 5%;
   align-items: center;
-
   height: auto;
   /* Boyutu içeriğe göre ayarlayın */
   width: 90%;
@@ -56,6 +54,7 @@ body {
   /* Maksimum genişlik */
   margin: 10px auto;
   /* Ortalamak için */
+  margin-top: 10%;
 }
 
 .general {
@@ -63,7 +62,7 @@ body {
   /* Mobilde tam genişlik */
   height: auto;
   /* İçeriğe göre ayarlama */
-  margin-top: 0;
+  margin: 0;
 
 }
 
