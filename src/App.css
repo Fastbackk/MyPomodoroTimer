@@ -44,7 +44,7 @@ body {
   display: flex;
   border-radius: 40px;
   flex-direction: column;
-  margin-top: 5%;
+
   align-items: center;
   height: auto;
   /* Boyutu içeriğe göre ayarlayın */
@@ -198,6 +198,29 @@ body {
   font-style: normal;
   font-size: 13vh;
 }
+
+
+@media screen and (max-width: 1241px) {
+  .anadiv {
+    flex-direction: column; /* Yataydan dikey düzene geçiş */
+    align-items: center; /* Ortalamak için */
+    gap: 20px; /* Divler arasında boşluk */
+  }
+
+  .custom_div {
+    width: 90%; /* Daha küçük genişlik */
+    height: auto; /* Boyutu içeriğe göre */
+    margin: 10px auto; /* Ortalanmış konum */
+    margin-top: 10%;
+  }
+
+  .general {
+    margin-top: 10%;
+    width: 90%; /* Ortalamak için genişlik */
+    height: auto; /* İçeriğe göre otomatik yükseklik */
+  }
+}
+
 
 @media screen and (max-width: 768px) {
   .custom_div {
