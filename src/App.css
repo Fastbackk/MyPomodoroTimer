@@ -123,19 +123,19 @@ h3 {
 .TaskDiv{
   background-color: rebeccapurple;
 }*/
-
-.div1 {
-  width: 100%;
+.anadiv{
   background-image: url('/public/images/wallpaper.jpg');
   background-size: cover;
   background-position: center;
-  min-height: 200vh;
+  height: auto;
 }
-.bosluk{
-  min-height: 100vh;
+.div1 {
   width: 100%;
+  min-height: 100vh;
 }
-
+.whatPomo{
+  height: 120vh;
+}
 
 .custom_div {
   height: 50vh;

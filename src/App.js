@@ -61,7 +61,7 @@ function App() {
     } else {
       skip();
       SetIsCompleted(true);
-      
+
     }
   }
 
@@ -87,15 +87,15 @@ function App() {
   };
 
   const resetTime = () => {
-    const confirmReset=window.confirm("Zamanlayıcıyı sıfırlamak istediğinize emin misiniz?");
-    if(confirmReset){
-    setIsRunning(false);
-    setLeftTime(25 * 60); // Reset yapınca 25 dakikaya dön
-    setIsPomo(true); // Pomodoro modu
-    setbgColorGeneral("#ff656f");
-    setbgColorOtherGrids("#fd8186");
-    setButtonTextValue("Start");
-    setMyPomos(0);
+    const confirmReset = window.confirm("Zamanlayıcıyı sıfırlamak istediğinize emin misiniz?");
+    if (confirmReset) {
+      setIsRunning(false);
+      setLeftTime(25 * 60); // Reset yapınca 25 dakikaya dön
+      setIsPomo(true); // Pomodoro modu
+      setbgColorGeneral("#ff656f");
+      setbgColorOtherGrids("#fd8186");
+      setButtonTextValue("Start");
+      setMyPomos(0);
     }
   };
 
@@ -117,13 +117,13 @@ function App() {
   return (
     <div className="div1 d-flex flex-column">
       <Navbar></Navbar>
-      <div className='justify-content-center d-flex flex-row mt-4' style={{ flex: 1 }}>
+      <div className='anadiv justify-content-center d-flex flex-row' style={{ flex: 1, paddingBottom: '12%' }}>
         {/* SOL BÖLÜM/*/}
         <div className='custom_div' style={{ transition: '0.4s', backgroundColor: bgColorOtherGrids }}>
           <MyValues myPomos={myPomos}></MyValues>
         </div>
         {/* POMODORO BÖLÜMÜ/*/}
-        <div className='custom_div general d-flex justify-content-center' style={{ fontFamily: 'Parkinsans, sans-serif', backgroundColor: bgColorGeneral, transition: '0.4s' }}>
+        <div className='custom_div general d-flex justify-content-center mt-2' style={{ fontFamily: 'Parkinsans, sans-serif', backgroundColor: bgColorGeneral, transition: '0.4s' }}>
           <p className='myPomos' style={{ fontFamily: 'Pacifico,cursive', fontSize: 'xx-large' }}>#{myPomos}</p>
           <p style={{ fontOpticalSizing: 'auto', fontWeight: '800', fontStyle: 'normal', fontSize: '13vh' }}>{formatTime(leftTime)}</p>
           <div className='d-flex justify-content-center align-items-start' style={{ width: '100%', height: '40%' }}>
@@ -145,12 +145,40 @@ function App() {
           <Task></Task>
         </div>
       </div>
+      <div className='whatPomo d-flex flex-column align-items-center' >
+        <div style={{ marginTop: '10%', width: '45%', height: '4px', background: '#fb637b', borderRadius: '25px' }}></div>
+        <div style={{ width: '45%', paddingTop: '2%', fontFamily: 'Parkinsans,sans-serif' }}>
+
+          <div className='d-flex mb-4 align-items-center'>
+            <img src="/images/pomoElement.png" alt="Logo" style={{ width: '100px', height: '100px' }}></img>
+            <h1 style={{ marginLeft: '2%', fontFamily: 'Pacifico,cursive' }}>Nedir Bu Pomodoro Tekniği?</h1>
+
+          </div>
+          <p>Pomodoro Tekniği, verimli çalışma ve zaman yönetimi için geliştirilmiş popüler bir tekniktir. 1980'lerin sonunda Francesco Cirillo tarafından yaratılan bu yöntem, adını İtalyanca "domates" anlamına gelen pomodoro kelimesinden alır. Cirillo, çalışırken kullandığı domates şeklindeki zamanlayıcısından esinlenerek bu ismi vermiştir. <br></br> <br></br>
+            Bu teknik, çalışma sürelerini 25 dakika olarak belirler ve her 25 dakikalık yoğun çalışmayı, kısa bir 5 dakikalık ara ile takip eder. Her dört pomodoro (çalışma süresi) sonunda ise daha uzun bir ara (15-30 dakika) verilir. Pomodoro Tekniği, odaklanmayı artırarak, sıkıcı ve uzun çalışma seanslarını daha verimli ve motive edici hale getirmeyi amaçlar.
+            <br></br>  <br></br>
+
+            <h4>Pomodoro'nun Faydaları:</h4>
+            <br></br>
+            <ul>
+              <li><strong>Odaklanmayı Artırır: </strong>Kısa çalışma aralıkları, dikkat dağılmalarını engeller.</li><br></br>
+              <li><strong>Zamanı Verimli Kullanır: </strong>Her pomodoro'nun sonunda kısa molalar vererek yenilenmiş bir zihinle çalışmaya devam edilir.</li><br></br>
+              <li><strong>Zihinsel Yorgunluğu Azaltır: </strong>Uzun süreli kesintisiz çalışmalardan kaynaklanan yorgunluğu engeller.</li><br></br>
+              <li><strong>Hedef Belirleme: </strong>Her bir pomodoro bir hedefe yönelik olmalıdır, bu da başarı duygusunu pekiştirir.</li><br></br><br></br>
+            </ul>
+
+
+
+
+          </p>
+        </div>
+      </div>
 
       <footer className="d-flex flex-column bg-primary text-white p-3 bg-dark">
         <div className="container">
           <div className="text-center mt-3">
-            <button className='footerIconButton'> <FaGithub onClick={(e)=> window.location.href ="https://github.com/Fastbackk"} className='g_icon fs-1' /></button>
-            <button className='footerIconButton'> <FaLinkedin onClick={(e)=> window.location.href="https://www.linkedin.com/in/mahmut-tunahan-akta%C5%9F-942699267/"} className='l_icon fs-1' /></button>
+            <button className='footerIconButton'> <FaGithub onClick={(e) => window.location.href = "https://github.com/Fastbackk"} className='g_icon fs-1' /></button>
+            <button className='footerIconButton'> <FaLinkedin onClick={(e) => window.location.href = "https://www.linkedin.com/in/mahmut-tunahan-akta%C5%9F-942699267/"} className='l_icon fs-1' /></button>
           </div>
         </div>
         <div className="text-center mt-3">
