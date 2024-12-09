@@ -1,169 +1,104 @@
-/*.div1 {
-  font-family: "Old Standard TT", serif;
+* {
   margin: 0;
   padding: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: black;
-  text-align: center;
-  height: 100vh;
-  transition: 0.4s;
-  display: flex;
-  flex-direction: column;
-  
-
-}
-.container{
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  height: 100vh;
-  transition: 0.4s;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  
-}
-.myValues{
-  margin-top: 10%;
-  transition: 0.4s;
-  padding: 20px;
-  height: 45%;
-  width: 25%;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  border-radius: 50px;
-  margin: 5%;
-}
-.MyTrackers{
-  margin-top: 10%;
-  transition: 0.4s;
-  padding: 20px;
-  height: 45%;
-  width: 25%;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  border-radius: 50px;
-  border: 2px solid black;
-  margin: 5%;
+  box-sizing: border-box;
 }
 
-.div2 {
-  
-  margin-top: 10%;
-  transition: 0.4s;
-  padding: 20px;
-  height: 45%;
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  border-radius: 50px;
-}
-.timeH {
-  margin: 40px;
-  font-size: 10vh;
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  overflow-x: hidden;
+  /* Yatay kaymayı önler */
 }
 
-.div3 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-}
-
-.div4 {
-  display: flex;
-  align-items: center;
-}
-
-.startButton {
-  background-color: white;
-  transition: 0.5s;
-  color: #b83b3b;
-  font-size: 5vh;
-}
-
-.startButton:hover {
-  background-color: rgb(255, 218, 218);
-  color: #b83b3b;
-}
-
-h3 {
-  font-size: 2vh;
-}
-.resetButton{
-  background-color: white;
-  color: #b83b3b;
-  padding: 5px;
-  
-}
-.myPomos{
-  font-size: 20px;
-}
-
-.navbar{
-  background-color: white;
-  color: #26478a;
-  border-bottom: 2px solid #26478a;
-  display: flex;
-  justify-items: center;
-
-}
-.loginButton{
-  background-color: rgb(57, 136, 255);
-  color: white;
-  font-size: medium;
-  font-weight: bold;
-  border-radius: 20px;
-}
-.TaskDiv{
-  background-color: rebeccapurple;
-}*/
-.anadiv{
+.anadiv {
+  flex-wrap: wrap;
+  /* Satır taşmalarını önler */
+  gap: 20px;
+  /* Elemanlar arası boşluk */
   background-image: url('/public/images/wallpaper.jpg');
   background-size: cover;
   background-position: center;
   height: auto;
 }
+
+.content_whatPomo {
+  font-family: Parkinsans, cursive;
+  width: 45%;
+  padding-top: 2%
+}
+
 .div1 {
   width: 100%;
   min-height: 100vh;
 }
-.whatPomo{
-  height: 120vh;
+
+.whatPomo {
+  height: 100vh;
 }
 
+
 .custom_div {
-  height: 50vh;
-  width: 25%;
-  margin: 20px;
   border: 5px solid #15c4a8;
   color: white;
   padding: 20px;
   display: flex;
-  border-radius: 100%;
+  border-radius: 40px;
   flex-direction: column;
   margin-top: 5%;
   align-items: center;
+
+  height: auto;
+  /* Boyutu içeriğe göre ayarlayın */
+  width: 90%;
+  /* Küçük ekranlarda genişlik artırılır */
+  max-width: 400px;
+  /* Maksimum genişlik */
+  margin: 10px auto;
+  /* Ortalamak için */
 }
 
 .general {
-  width: 30%;
+  width: 100%;
+  /* Mobilde tam genişlik */
+  height: auto;
+  /* İçeriğe göre ayarlama */
   margin-top: 0;
-  height: 65vh;
+
 }
 
 .navbar {
+  padding: 10px;
   font-family: "Pacifico", cursive;
+
+  text-align: center;
+  /* Ortalama */
 }
 
+.footerIconButton {
+  margin: 5px;
+  /* İkonlar arası boşluk */
+  font-size: 1.5rem;
+  /* İkon boyutu */
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    font-size: 1.2rem;
+    /* Daha küçük yazı boyutu */
+  }
+
+  footer {
+    font-size: 0.9rem;
+    /* Yazıları küçült */
+    padding: 15px;
+    /* Kenar boşlukları */
+  }
+}
+
+
 .startbutton {
-  width: 40%;
-  height: 30%;
+
   background-color: #15c4a8;
   font-weight: bold;
   font-family: "Parkinsans", sans-serif;
@@ -172,6 +107,15 @@ h3 {
   font-size: 2rem;
   border-radius: 40px;
   transition: 0.4s;
+
+  height: auto;
+  /* Boyutu içeriğe göre ayarlayın */
+  width: 90%;
+  /* Küçük ekranlarda genişlik artırılır */
+  max-width: 400px;
+  /* Maksimum genişlik */
+  margin: 10px auto;
+  /* Ortalamak için */
 }
 
 .startbutton:hover {
@@ -209,7 +153,7 @@ h3 {
   color: black;
   background: white;
   border-radius: 20px;
-  align-items: center; 
+  align-items: center;
 }
 
 .track_tick {
@@ -221,24 +165,78 @@ h3 {
 .track_tick:hover {
   color: rgb(14, 182, 14);
 }
+
 .delete_icon {
-  cursor: pointer; /* Silme ikonuna tıklanabilirlik ekler */
+  cursor: pointer;
+  /* Silme ikonuna tıklanabilirlik ekler */
   font-size: 30px;
   float: left;
   color: gray;
 }
-.delete_icon:hover{
+
+.delete_icon:hover {
   color: red;
 }
-.l_icon:hover{
-color: rgb(209, 209, 209);
-}
-.g_icon:hover{
+
+.l_icon:hover {
   color: rgb(209, 209, 209);
 }
-.footerIconButton{
+
+.g_icon:hover {
+  color: rgb(209, 209, 209);
+}
+
+.footerIconButton {
   color: white;
   border: none;
   background-color: transparent;
+
+}
+
+.timerText {
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 13vh;
+}
+
+@media screen and (max-width: 768px) {
+  .custom_div {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    /* Yuvarlak hatlar yerine köşeli */
+  }
+
+  .anadiv {
+    flex-direction: column;
+    /* Tek sütuna geçiş */
+    align-items: center;
+    /* Ortala */
+  }
+
+  .whatPomo {
+    height: auto;
+    /* Sabit yükseklik yerine otomatik */
+    padding: 20px;
+    /* İçerik boşluğu */
+  }
+
+  .content_whatPomo {
+    width: 90%;
+  }
+
+  .timerText {
+    font-weight: 800;
+    font-size: 10vh;
+  }
+
+  .startbutton {
+    width: 90%;
+  }
+
+  .resetbutton {
+    font-size: 2rem;
+  }
 
 }
