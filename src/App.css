@@ -10,6 +10,64 @@ body {
   overflow-x: hidden;
   /* Yatay kaymayı önler */
 }
+.loginDiv{
+  flex-wrap: wrap;
+  /* Satır taşmalarını önler */
+  gap: 20px;
+ 
+  height: 100vh;
+ 
+}
+.input_text{
+  background-color: white;
+  border: 2px solid #fd8186;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  font-size: medium;
+  height: auto;
+  width: 100%;
+  padding: 5%;
+}
+
+.input_text:hover{
+  border-color: green;
+}
+.input_div{
+  display: flex;
+height: auto;
+width: 60%;
+  flex-direction: column;
+  justify-content: center;
+
+}
+.containerdiv{
+  background-color: #fd8186;
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+  flex: r;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.general_div{
+  background-color: white;
+  border-radius: 20px;
+  width: 25%;
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Parkinsans, cursive;
+}
+.imgbla{
+  margin: 20px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+
+}
+
 
 .anadiv {
   flex-wrap: wrap;
@@ -44,7 +102,6 @@ body {
   display: flex;
   border-radius: 40px;
   flex-direction: column;
-
   align-items: center;
   height: auto;
   /* Boyutu içeriğe göre ayarlayın */
@@ -65,14 +122,30 @@ body {
   margin: 0;
 
 }
+.btnlogin{
+  border-radius:10px;
+  padding:5px;
+  border:2px solid #1d91b3;
+  color:#1d91b3;
+  background-color: transparent;
+  transition: 0.4s;
+}
+.btnlogin:hover{
+  background-color: rgb(235, 233, 233);
+}
 
 .navbar {
   padding: 10px;
-  font-family: "Pacifico", cursive;
-
   text-align: center;
   /* Ortalama */
+  font-family: "Parkinsans", sans-serif;
+
 }
+.navbar_baslik{
+  font-family: "Pacifico", cursive;
+
+}
+
 
 .footerIconButton {
   margin: 5px;
@@ -81,19 +154,7 @@ body {
   /* İkon boyutu */
 }
 
-@media screen and (max-width: 768px) {
-  .navbar {
-    font-size: 1.2rem;
-    /* Daha küçük yazı boyutu */
-  }
 
-  footer {
-    font-size: 0.9rem;
-    /* Yazıları küçült */
-    padding: 15px;
-    /* Kenar boşlukları */
-  }
-}
 
 
 .startbutton {
@@ -201,6 +262,17 @@ body {
 
 
 @media screen and (max-width: 1241px) {
+  .navbar {
+    font-size: 1.2rem;
+    /* Daha küçük yazı boyutu */
+  }
+
+  footer {
+    font-size: 0.9rem;
+    /* Yazıları küçült */
+    padding: 15px;
+    /* Kenar boşlukları */
+  }
   .anadiv {
     flex-direction: column; /* Yataydan dikey düzene geçiş */
     align-items: center; /* Ortalamak için */
@@ -220,9 +292,18 @@ body {
     height: auto; /* İçeriğe göre otomatik yükseklik */
   }
 }
-
-
 @media screen and (max-width: 768px) {
+  .navbar {
+    font-size: 1.2rem;
+    /* Daha küçük yazı boyutu */
+  }
+
+  footer {
+    font-size: 0.9rem;
+    /* Yazıları küçült */
+    padding: 15px;
+    /* Kenar boşlukları */
+  }
   .custom_div {
     width: 100%;
     height: auto;
@@ -259,6 +340,15 @@ body {
 
   .resetbutton {
     font-size: 2rem;
+  }
+  .containerdiv{
+    justify-content: center;
+    align-items: center;
+  }
+
+  .general_div{
+    width: 85%;
+    height: 60vh;
   }
 
 }

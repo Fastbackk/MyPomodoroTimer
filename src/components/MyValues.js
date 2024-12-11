@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 function MyValues({ myPomos }) {
+
     const [zaman, setzaman] = useState(0);
     const [dakika, setdakika] = useState(0);
     const [image1Visibilty, setImage1Visibilty] = useState(false);
@@ -38,6 +39,12 @@ function MyValues({ myPomos }) {
             else if (check_images === 1) {
                 setImage1Visibilty(true);
             }
+        } else {
+            setImage1Visibilty(false);
+            setImage2Visibilty(false);
+            setImage3Visibilty(false);
+            setImage4Visibilty(false);
+            setImage5Visibilty(false);
         }
     }, [myPomos]);
 
@@ -83,9 +90,9 @@ function MyValues({ myPomos }) {
             <div className="d-flex flex-column align-items-center">
                 <img style={{ transition: '0.4s', visibility: image5Visibilty ? "visible" : "hidden", width: image5size, height: image5size, transition: '0.8s' }} src="/images/fourPomo.png" alt="Logo"></img>
                 <div className="d-flex justify-content-center mt-4">
-                    <img className="pomo1" src="/images/pomoElement.png" alt="Logo" style={{ visibility: image1Visibilty ? "visible" : "hidden", width: '60px', height: '60px' }}></img>
-                    <img className="pomo2" src="/images/pomoElement.png" alt="Logo" style={{ visibility: image2Visibilty ? "visible" : "hidden", width: '60px', height: '60px', marginTop: "10%" }}></img>
-                    <img className="pomo3" src="/images/pomoElement.png" alt="Logo" style={{ visibility: image3Visibilty ? "visible" : "hidden", width: '60px', height: '60px', marginTop: "10%" }}></img>
+                    <img className="pomo1" src="/images/pomoElement.png" alt="Logo" style={{ visibility: image1Visibilty ? "visible" : "hidden", width: '60px', height: '60px', marginRight: '5px' }}></img>
+                    <img className="pomo2" src="/images/pomoElement.png" alt="Logo" style={{ visibility: image2Visibilty ? "visible" : "hidden", width: '60px', height: '60px', marginRight: '5px' }}></img>
+                    <img className="pomo3" src="/images/pomoElement.png" alt="Logo" style={{ visibility: image3Visibilty ? "visible" : "hidden", width: '60px', height: '60px', marginRight: '5px' }}></img>
                     <img className="pomo4" src="/images/pomoElement.png" alt="Logo" style={{ visibility: image4Visibilty ? "visible" : "hidden", width: '60px', height: '60px' }}></img>
                 </div>
             </div>

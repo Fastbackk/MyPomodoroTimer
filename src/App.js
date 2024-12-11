@@ -1,16 +1,23 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { IoIosSkipForward } from "react-icons/io";
-import Navbar from './Navbar';
+import Navbar from './components/Navbar';
 import Task from './components/Task';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyValues from './components/MyValues';
 import { LuTimerReset } from "react-icons/lu";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
+import Login from './components/Login';
+import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop';
+import { FaArrowUp } from "react-icons/fa6";
+import { isLabelWithInternallyDisabledControl } from '@testing-library/user-event/dist/utils';
 
-
-function App() {
+function Main() {
+  const [topButtonVisible, settopButtonVisible] = useState(false);
   const [isCompleted, SetIsCompleted] = useState(false);
   const [bgColorGeneral, setbgColorGeneral] = useState("#ff656f");
   const [bgColorOtherGrids, setbgColorOtherGrids] = useState("#fd8186");
@@ -20,6 +27,38 @@ function App() {
   const [isPomo, setIsPomo] = useState(true);
   const [myPomos, setMyPomos] = useState(0);
 
+  //Süreyi sekmeye yazdırma
+  useEffect(()=>{
+    if(isPomo){
+      document.title=formatTime(leftTime)+" - Odaklanma Vakti! - " ;
+    }else if(!isPomo){
+      document.title=formatTime(leftTime)+" - Dinlenme Vakti - ";
+
+    }
+
+  },[leftTime]);
+
+
+  //yukarıya dönme buttonu kodları
+  // Sayfa kaydırma durumu değiştikçe butonun görünür olup olmamasını kontrol eder
+  const handleScroll = () => {
+    if (window.scrollY > 300) { // 300px'den fazla kaydırma yapılınca buton görünsün
+      settopButtonVisible(true);
+    } else {
+      settopButtonVisible(false);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);;
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+
+  };
   //timer fonksiyonu kodları
   useEffect(() => {
     let interval;
@@ -116,7 +155,7 @@ function App() {
 
   return (
     <div className="div1 d-flex flex-column">
-      <Navbar></Navbar>
+      <Navbar isLogin={false}></Navbar>
       <div className='anadiv justify-content-center d-flex flex-row' style={{ flex: 1, paddingBottom: '12%' }}>
         {/* SOL BÖLÜM/*/}
         <div className='custom_div' style={{ transition: '0.4s', backgroundColor: bgColorOtherGrids }}>
@@ -166,6 +205,14 @@ function App() {
           </p>
         </div>
       </div>
+
+      {topButtonVisible && (
+        <button onClick={scrollToTop} style={{
+          padding: '10px', color: 'white', border: 'none', cursor: 'pointer', transition: 'opacity 0.3s ease', zIndex: '1000', position: 'fixed', background: '#fb5e7a', borderRadius: '20px', float: 'right', bottom: '20px',
+          right: '20px'
+        }}><FaArrowUp style={{ fontSize: '40px' }} /></button>)}
+
+
       <footer className="d-flex flex-column bg-primary text-white p-3 bg-dark">
         <div className="container">
           <div className="text-center mt-3">
@@ -179,6 +226,19 @@ function App() {
         </div>
       </footer>
     </div>
+  );
+}
+function App() {
+
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <Routes>
+        <Route path='/' element={<Main />}></Route>
+        <Route path='/login' element={<Login />}></Route>
+        <Route path="*" element={<h1>404 Not Found</h1>} />;
+      </Routes>
+    </BrowserRouter>
   );
 }
 
