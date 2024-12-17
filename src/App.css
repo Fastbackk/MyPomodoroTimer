@@ -1,8 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 
 body {
   font-family: Arial, sans-serif;
@@ -10,15 +13,18 @@ body {
   overflow-x: hidden;
   /* Yatay kaymayı önler */
 }
-.loginDiv{
+
+
+.loginDiv {
   flex-wrap: wrap;
   /* Satır taşmalarını önler */
   gap: 20px;
- 
+
   height: 100vh;
- 
+
 }
-.input_text{
+
+.input_text {
   background-color: white;
   border: 2px solid #fd8186;
   border-radius: 15px;
@@ -29,28 +35,31 @@ body {
   padding: 5%;
 }
 
-.input_text:hover{
+.input_text:hover {
   border-color: green;
 }
-.input_div{
+
+.input_div {
   display: flex;
-height: auto;
-width: 60%;
+  height: auto;
+  width: 60%;
   flex-direction: column;
   justify-content: center;
 
 }
-.containerdiv{
+
+.containerdiv {
   background-color: #fd8186;
   height: 100%;
-  display:flex;
+  display: flex;
   flex-direction: column;
   flex: r;
   width: 100%;
   justify-content: center;
   align-items: center;
 }
-.general_div{
+
+.general_div {
   background-color: white;
   border-radius: 20px;
   width: 25%;
@@ -60,7 +69,8 @@ width: 60%;
   align-items: center;
   font-family: Parkinsans, cursive;
 }
-.imgbla{
+
+.imgbla {
   margin: 20px;
   background-color: white;
   padding: 10px;
@@ -122,15 +132,17 @@ width: 60%;
   margin: 0;
 
 }
-.btnlogin{
-  border-radius:10px;
-  padding:5px;
-  border:2px solid #1d91b3;
-  color:#1d91b3;
+
+.btnlogin {
+  border-radius: 10px;
+  padding: 5px;
+  border: 2px solid #1d91b3;
+  color: #1d91b3;
   background-color: transparent;
   transition: 0.4s;
 }
-.btnlogin:hover{
+
+.btnlogin:hover {
   background-color: rgb(235, 233, 233);
 }
 
@@ -141,7 +153,8 @@ width: 60%;
   font-family: "Parkinsans", sans-serif;
 
 }
-.navbar_baslik{
+
+.navbar_baslik {
   font-family: "Pacifico", cursive;
 
 }
@@ -152,6 +165,9 @@ width: 60%;
   /* İkonlar arası boşluk */
   font-size: 1.5rem;
   /* İkon boyutu */
+  color: white;
+  border: none;
+  background-color: transparent;
 }
 
 
@@ -215,7 +231,7 @@ width: 60%;
   font-size: 2rem;
   float: left;
   color: gray;
-  
+
 }
 
 .delete_icon:hover {
@@ -230,12 +246,7 @@ width: 60%;
   color: rgb(209, 209, 209);
 }
 
-.footerIconButton {
-  color: white;
-  border: none;
-  background-color: transparent;
 
-}
 
 .timerText {
   font-optical-sizing: auto;
@@ -257,7 +268,8 @@ width: 60%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 30%;
 }
-.close-div{
+
+.close-div {
   margin: 0;
   padding: 0;
 }
@@ -279,19 +291,98 @@ width: 60%;
   pointer-events: none;
 
 }
+
 .popup-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Yarı şeffaf arka plan */
+  background: rgba(0, 0, 0, 0.5);
+  /* Yarı şeffaf arka plan */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  
+
 }
+
+/* Karanlık tema */
+body.dark {
+  background-color: #292c35;
+  /* Koyu arka plan rengi */
+}
+
+body.dark h1,
+body.dark p {
+  color: white;
+  /* Karanlık temada beyaz yazılar */
+
+}
+.navbar, div, p{
+  transition: 0.4s;
+}
+/* Navbar Arka Planı */
+body.dark .navbar {
+  background-color: #111 !important; /* Navbar'ı koyulaştır */
+  color: white;
+}
+body.dark .btnlogin {
+  background-color: #111 !important; /* Navbar'ı koyulaştır */
+  color: #1d91b3;
+}
+
+/* Toggle düğmesi */
+.checkbox {
+  
+  opacity: 0;
+  /* Görünmez yap */
+  position: absolute;
+  /* Sayfa düzenini bozmaz */
+}
+
+.checkbox-label {
+  background-color: #111;
+  /* Arka plan rengi */
+  width: 50px;
+  height: 26px;
+  border-radius: 50px;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fa-moon {
+  color: #f1c40f;
+  /* Ay rengi */
+}
+
+.fa-sun {
+  color: #f39c12;
+  /* Güneş rengi */
+}
+
+.checkbox-label .ball {
+  background-color: #fff;
+  /* Topun rengi */
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+  /* Geçiş animasyonu */
+}
+
+.checkbox:checked+.checkbox-label .ball {
+  transform: translateX(24px);
+  /* Topu sağa taşı */
+}
+
 
 @media screen and (max-width: 1241px) {
   .navbar {
@@ -305,25 +396,38 @@ width: 60%;
     padding: 15px;
     /* Kenar boşlukları */
   }
+
   .anadiv {
-    flex-direction: column; /* Yataydan dikey düzene geçiş */
-    align-items: center; /* Ortalamak için */
-    gap: 20px; /* Divler arasında boşluk */
+    flex-direction: column;
+    /* Yataydan dikey düzene geçiş */
+    align-items: center;
+    /* Ortalamak için */
+    gap: 20px;
+    /* Divler arasında boşluk */
   }
 
   .custom_div {
-    width: 90%; /* Daha küçük genişlik */
-    height: auto; /* Boyutu içeriğe göre */
-    margin: 10px auto; /* Ortalanmış konum */
+    width: 90%;
+    /* Daha küçük genişlik */
+    height: auto;
+    /* Boyutu içeriğe göre */
+    margin: 10px auto;
+    /* Ortalanmış konum */
     margin-top: 10%;
   }
 
   .general {
     margin-top: 10%;
-    width: 90%; /* Ortalamak için genişlik */
-    height: auto; /* İçeriğe göre otomatik yükseklik */
+    width: 90%;
+    /* Ortalamak için genişlik */
+    height: auto;
+    /* İçeriğe göre otomatik yükseklik */
+  }
+  .content_whatPomo {
+    width: 95%;
   }
 }
+
 @media screen and (max-width: 768px) {
   .navbar {
     font-size: 1.2rem;
@@ -336,6 +440,7 @@ width: 60%;
     padding: 15px;
     /* Kenar boşlukları */
   }
+
   .custom_div {
     width: 100%;
     height: auto;
@@ -373,18 +478,19 @@ width: 60%;
   .resetbutton {
     font-size: 2rem;
   }
-  .containerdiv{
+
+  .containerdiv {
     justify-content: center;
     align-items: center;
   }
 
-  .general_div{
+  .general_div {
     width: 85%;
     height: 60vh;
   }
-  .popup-content{
+
+  .popup-content {
     width: 90%;
   }
 
 }
-

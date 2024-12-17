@@ -1,11 +1,25 @@
-import React, { useEffect, useState } from 'react';
+
+
+import React, { useEffect, useState, useContext } from 'react';
 import { RiAccountPinCircleFill } from "react-icons/ri";
 import { Navigate, useNavigate } from 'react-router-dom';
 import { FaUsers } from "react-icons/fa";
+import { FaMoon } from "react-icons/fa";
+import { MdSunny } from "react-icons/md";
+import { MyContext } from '../context';
 
 
 const Navbar = ({ isLogin, togglePopup }) => {
   const [buttonVisiblty, setButtonVisibility] = useState(true);
+  const { darkMode, setDarkMode } = useContext(MyContext);
+
+  // Temayı değiştir
+  const handleToggleTheme = () => {
+    setDarkMode((prev) => !prev);
+    document.body.classList.toggle("dark", !darkMode); // Tema class'ını değiştirme
+   
+  };
+
 
   useEffect(() => {
     if (isLogin) {
@@ -26,7 +40,7 @@ const Navbar = ({ isLogin, togglePopup }) => {
 
 
   return (
-    <nav className='navbar navbar-expand-lg navbar-light'
+    <nav className='navbar'
       style={{ fontWeight: "bold", background: "white", padding: "10px", color: "#01268f", borderBottom: "2px solid #01268f" }}>
       <div className="container-fluid d-flex justify-content-between align-items-center">
         {/* Logo ve Başlık */}
@@ -34,6 +48,20 @@ const Navbar = ({ isLogin, togglePopup }) => {
           <button onClick={() => navigate("/")} style={{ background: 'transparent', border: 'none' }}>
             <img src='./images/pomoLogo.png' alt='Logo' style={{ marginRight: '10px', maxHeight: '50px' }} /></button>
           <h1 className='navbar_baslik m-0'>My Pomodoro Timer</h1>
+        </div>
+        <div className="d-flex align-items-center">
+          <input
+            type="checkbox"
+            className="checkbox"
+            id="checkbox"
+            checked={darkMode}
+            onChange={handleToggleTheme}
+          />
+          <label htmlFor="checkbox" className="checkbox-label">
+            <FaMoon className="fa-moon" />
+            <MdSunny className="fa-sun" />
+            <span className="ball"></span>
+          </label>
         </div>
         <button onClick={togglePopup} className='btnlogin d-flex align-items-center m-1'>
           <FaUsers style={{ fontSize: '2rem' }} />
@@ -45,13 +73,8 @@ const Navbar = ({ isLogin, togglePopup }) => {
 
           </button>
         )}
-
-
       </div>
     </nav>
-
   );
-
-
 
 }; export default Navbar;

@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { IoIosSkipForward } from "react-icons/io";
 import Navbar from './components/Navbar';
@@ -17,8 +17,11 @@ import { FaArrowUp } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 import axios from 'axios';
 import { HiMiniUserCircle } from "react-icons/hi2";
+import { MyContext, MyContextProvider } from './context';
+
 
 function Main() {
+  const { darkMode, myPomos, setMyPomos } = useContext(MyContext);
   const [topButtonVisible, settopButtonVisible] = useState(false);
   const [isCompleted, SetIsCompleted] = useState(false);
   const [bgColorGeneral, setbgColorGeneral] = useState("#ff656f");
@@ -27,8 +30,7 @@ function Main() {
   const [leftTime, setLeftTime] = useState(25 * 60);
   const [isRunning, setIsRunning] = useState(false);
   const [isPomo, setIsPomo] = useState(true);
-  const [myPomos, setMyPomos] = useState(0);
-  const [popupVisible, setPopupVisible] = useState(false);
+  const [popupVisible, setPopupVisible] = useState(false)
 
   //popup'u açıp kapatan function
   const togglePopup = () => {
@@ -57,7 +59,10 @@ function Main() {
   };
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);;
+    console.log("dark mode " +darkMode);
     return () => window.removeEventListener('scroll', handleScroll);
+
+    
   }, []);
   const scrollToTop = () => {
     window.scrollTo({
@@ -287,6 +292,7 @@ function Main() {
 function App() {
 
   return (
+    <MyContextProvider>
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
@@ -295,5 +301,6 @@ function App() {
         <Route path="*" element={<h1>404 Not Found</h1>} />;
       </Routes>
     </BrowserRouter>
+    </MyContextProvider>
   );
 } export default App;

@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { IoMdAddCircle } from "react-icons/io";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
+import { MyContext } from '../context';
 
 const Task = () => {
     const [newTask, setNewTask] = useState("");
     const [tasks, setTasks] = useState([]);
+    const {darkMode,setDarkMode}=useContext(MyContext);
 
     const add_task = () => {
         if (newTask.trim() !== "") {
             setTasks([...tasks, { task: newTask, completed: false }]);
             setNewTask("");
+
+ 
         }
     };
 
