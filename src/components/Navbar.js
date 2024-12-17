@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { RiAccountPinCircleFill } from "react-icons/ri";
 import { Navigate, useNavigate } from 'react-router-dom';
+import { FaUsers } from "react-icons/fa";
 
 
-
-
-const Navbar = ({ isLogin }) => {
+const Navbar = ({ isLogin, togglePopup }) => {
   const [buttonVisiblty, setButtonVisibility] = useState(true);
 
   useEffect(() => {
@@ -32,10 +31,13 @@ const Navbar = ({ isLogin }) => {
       <div className="container-fluid d-flex justify-content-between align-items-center">
         {/* Logo ve Başlık */}
         <div className="d-flex align-items-center mx-auto">
-        <button onClick={() => navigate("/")} style={{background:'transparent',border:'none'}}>
-          <img src='./images/pomoLogo.png' alt='Logo' style={{ marginRight: '10px', maxHeight: '50px' }} /></button>
+          <button onClick={() => navigate("/")} style={{ background: 'transparent', border: 'none' }}>
+            <img src='./images/pomoLogo.png' alt='Logo' style={{ marginRight: '10px', maxHeight: '50px' }} /></button>
           <h1 className='navbar_baslik m-0'>My Pomodoro Timer</h1>
         </div>
+        <button onClick={togglePopup} className='btnlogin d-flex align-items-center m-1'>
+          <FaUsers style={{ fontSize: '2rem' }} />
+        </button>
         {buttonVisiblty && (
           <button onClick={(e) => navigate("/login")} className='btnlogin d-flex align-items-center'>
             <RiAccountPinCircleFill style={{ fontSize: '2rem' }} />

@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { IoMdAddCircle } from "react-icons/io";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
@@ -14,13 +13,13 @@ const Task = () => {
             setNewTask("");
         }
     };
+
     const deleteTask = (index) => {
         const updatedTasks = tasks.filter((_, taskIndex) => taskIndex !== index);
         setTasks(updatedTasks);
-
-
     };
-    const completeButton = (index) => {
+
+    const toggleComplete = (index) => {
         const updatedTasks = tasks.map((task, taskIndex) => {
             if (taskIndex === index) {
                 return { ...task, completed: !task.completed };
@@ -47,18 +46,40 @@ const Task = () => {
             </div>
             <div className="task-list mt-4">
                 {tasks.map((task, index) => (
-                    <div key={index} className={`task-item ${task.completed ? "completed" : ""}`}>
+                    <div
+                        key={index}
+                        style={{
+                            justifyContent: 'space-between',
+                            padding: '5px',
+                            marginBottom: '10px',
+                            background: 'white',
+                            borderRadius: '10px',
+                            display: 'flex',
+                            alignItems: 'center',
+                        }}>
+                        {/* Icon Rengi Dinamik */}
                         <IoIosCheckmarkCircle
-                            className={`track_tick ${task.completed ? "completed" : ""}`}
-                            onClick={() => completeButton(index)}
+                            style={{
+                                fontSize: '2rem',
+                                color: task.completed ? "#10c428" : "gray",
+                            }}
+                            onClick={() => toggleComplete(index)}
                         />
-                        <p style={{ margin: "0", float: "left" }}>{task.task}</p>
+                        {/* Yazı Dekorasyonu ve Rengi Dinamik */}
+                        <p
+                            style={{
+                                color: task.completed ? "gray" : "black",
+                                textDecoration: task.completed ? "line-through" : "none",
+                            }}
+                        >
+                            {task.task}
+                        </p>
                         <MdDelete onClick={() => deleteTask(index)} className='delete_icon' />
                     </div>
                 ))}
             </div>
         </div>
     );
-}; export default Task;
+};
 
-
+export default Task;

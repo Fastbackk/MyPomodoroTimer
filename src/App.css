@@ -199,23 +199,6 @@ width: 60%;
 
 }
 
-.task-item:hover {
-  background-color: rgb(209, 209, 209);
-
-}
-
-.task-item {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px;
-  padding: 10px;
-  border: 2px solid #ccc;
-  color: black;
-  background: white;
-  border-radius: 20px;
-  align-items: center;
-}
-
 .track_tick {
   font-size: 30px;
   float: left;
@@ -229,9 +212,10 @@ width: 60%;
 .delete_icon {
   cursor: pointer;
   /* Silme ikonuna tıklanabilirlik ekler */
-  font-size: 30px;
+  font-size: 2rem;
   float: left;
   color: gray;
+  
 }
 
 .delete_icon:hover {
@@ -260,6 +244,54 @@ width: 60%;
   font-size: 13vh;
 }
 
+.popup-content {
+  border: 2px solid black;
+  background: #ff5762;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 30%;
+}
+.close-div{
+  margin: 0;
+  padding: 0;
+}
+
+.popup-close-button {
+  margin-top: 5px;
+  padding: 5px 10px;
+  background-color: #fb637b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: auto;
+  float: right;
+}
+
+.popup-active .blur-background {
+  filter: blur(5px);
+  pointer-events: none;
+
+}
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Yarı şeffaf arka plan */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  
+}
 
 @media screen and (max-width: 1241px) {
   .navbar {
@@ -350,5 +382,9 @@ width: 60%;
     width: 85%;
     height: 60vh;
   }
+  .popup-content{
+    width: 90%;
+  }
 
 }
+

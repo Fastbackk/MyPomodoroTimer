@@ -14,7 +14,9 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import { FaArrowUp } from "react-icons/fa6";
-import { isLabelWithInternallyDisabledControl } from '@testing-library/user-event/dist/utils';
+import { IoClose } from "react-icons/io5";
+import axios from 'axios';
+import { HiMiniUserCircle } from "react-icons/hi2";
 
 function Main() {
   const [topButtonVisible, settopButtonVisible] = useState(false);
@@ -26,18 +28,23 @@ function Main() {
   const [isRunning, setIsRunning] = useState(false);
   const [isPomo, setIsPomo] = useState(true);
   const [myPomos, setMyPomos] = useState(0);
+  const [popupVisible, setPopupVisible] = useState(false);
+
+  //popup'u açıp kapatan function
+  const togglePopup = () => {
+    setPopupVisible(!popupVisible);
+  };
 
   //Süreyi sekmeye yazdırma
-  useEffect(()=>{
-    if(isPomo){
-      document.title=formatTime(leftTime)+" - Odaklanma Vakti! - " ;
-    }else if(!isPomo){
-      document.title=formatTime(leftTime)+" - Dinlenme Vakti - ";
+  useEffect(() => {
+    if (isPomo) {
+      document.title = formatTime(leftTime) + " - Odaklanma Vakti! - ";
+    } else if (!isPomo) {
+      document.title = formatTime(leftTime) + " - Dinlenme Vakti - ";
 
     }
 
-  },[leftTime]);
-
+  }, [leftTime]);
 
   //yukarıya dönme buttonu kodları
   // Sayfa kaydırma durumu değiştikçe butonun görünür olup olmamasını kontrol eder
@@ -152,11 +159,62 @@ function Main() {
     const audio = new Audio('images/finishSound.wav');
     audio.play();
   };
+  function Popup({ togglePopup }) {
+    const [users, setUsers] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+      const fetchUser = async () => {
+        try {
+          const response = await axios.get("https://jsonplaceholder.typicode.com/users");
+          setUsers(response.data);
+        } catch (err) {
+          setError(err.message)
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchUser();
+    }, []);
+    // Yükleniyor durumunda
+    if (loading) return <p>Yükleniyor...</p>;
 
+    // Hata durumunda
+    if (error) return <p>Hata: {error}</p>;
+
+    // Veriyi başarıyla aldıysak
+    return (
+      <div className="popup-container">
+        <div className="popup-content">
+          <div className="close-div">
+            <button className='popup-close-button' onClick={togglePopup}>
+              <IoClose style={{ fontSize: '2rem' }} />
+            </button>
+          </div>
+          <h4 style={{marginTop:'10px'}}>Pomodoro Timer'ı kullanan diğer kullanıcılarımız</h4>
+          <div className='list-container'>
+            <ul>
+              {users.map((user) => (
+                <div style={{background:'#ff8597',display:'flex',border:'2px solid white',alignItems:'center', margin:'5px',borderRadius:'5px'}} key={user.id}>
+                  <HiMiniUserCircle style={{ fontSize: '2rem' }} />
+                  <p style={{ fontSize: '1rem', marginLeft: '5px' }}>
+                    {user.name} - ({user.email})
+                  </p>
+
+                </div>
+              ))}
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  };
   return (
-    <div className="div1 d-flex flex-column">
-      <Navbar isLogin={false}></Navbar>
-      <div className='anadiv justify-content-center d-flex flex-row' style={{ flex: 1, paddingBottom: '12%' }}>
+    <div className={`div1 d-flex flex-column ${popupVisible ? 'popup-active' : ''}`}>
+      <Navbar togglePopup={togglePopup} isLogin={false}></Navbar>
+      {popupVisible && <Popup togglePopup={togglePopup} />}
+      <div className={`anadiv justify-content-center d-flex flex-row ${popupVisible ? 'blur-background' : ''}`} style={{ flex: 1, paddingBottom: '12%' }}>
         {/* SOL BÖLÜM/*/}
         <div className='custom_div' style={{ transition: '0.4s', backgroundColor: bgColorOtherGrids }}>
           <MyValues myPomos={myPomos}></MyValues>
@@ -211,8 +269,6 @@ function Main() {
           padding: '10px', color: 'white', border: 'none', cursor: 'pointer', transition: 'opacity 0.3s ease', zIndex: '1000', position: 'fixed', background: '#fb5e7a', borderRadius: '20px', float: 'right', bottom: '20px',
           right: '20px'
         }}><FaArrowUp style={{ fontSize: '40px' }} /></button>)}
-
-
       <footer className="d-flex flex-column bg-primary text-white p-3 bg-dark">
         <div className="container">
           <div className="text-center mt-3">
@@ -240,6 +296,4 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-}
-
-export default App;
+} export default App;
